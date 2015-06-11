@@ -1,0 +1,86 @@
+.center {
+	text-align: center;
+}
+
+.ui-panel-inner>.ui-header {
+	margin: -1em -1em 0 -1em;
+}
+/*
+.ui-li .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li {
+    display: block;
+    padding: 0.9em 75px 0.9em 15px;
+}
+div.ui-slider-switch {
+    position: absolute;
+    right: 0;
+    width: 44%;
+}
+*/
+.ui-bar-z {
+	background: -moz-linear-gradient(left,#f00 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00 100%);
+	background: -ms-linear-gradient(left,#f00 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00 100%);
+	background: -o-linear-gradient(left,#f00 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00 100%);
+	background: -webkit-linear-gradient(left,#f00 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00 100%);
+	background: linear-gradient(left,#f00 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,#f00 100%);
+}
+
+.ui-bar-x {
+	background: -o-linear-gradient(left,#68e2fd,#fff 26%,#fff 30%,#fba951 100%);
+	background: -moz-linear-gradient(left,#68e2fd,#fff 26%,#fff 30%,#fba951 100%);
+	background: -webkit-linear-gradient(left,#68e2fd,#fff 26%,#fff 30%,#fba951 100%);
+	background: -ms-linear-gradient(left,#68e2fd,#fff 26%,#fff 30%,#fba951 100%);
+	background: linear-gradient(left,#68e2fd,#fff 26%,#fff 30%,#fba951 100%);
+}
+
+.ui-bar-z, .ui-bar-y, .ui-bar-x {
+	margin: 0 15px;
+	border: 1px solid #000;
+}
+
+.ui-bar-z .ui-slider-handle, .ui-bar-y .ui-slider-handle, .ui-bar-x .ui-slider-handle {
+	border: 2px solid #fff;
+	opacity: 0.5;
+}
+
+.ui-bar-z .ui-slider-handle:hover, .ui-bar-y .ui-slider-handle:hover, .ui-bar-x .ui-slider-handle:hover {
+	border: 2px solid #aaa;
+}
+
+.full-width-slider input {
+	display: none;
+}
+
+.full-width-slider .ui-slider-track {
+	margin-left: 15px;
+}
+
+#light-bg {
+	width: 48px;
+	height: 48px;
+	margin: 1em;
+	float: right;
+	border: 0px solid #fff;
+	border-radius: 30px;
+	box-shadow: 
+		/*inset #222 2px 2px 3px,
+		inset #222 -2px -2px 3px,
+		inset #222 2px -2px 3px,
+		inset #222 -2px 2px 3px,
+		inset #222 -2px 0 3px,
+		inset #222 2px 0 3px,
+		inset #222 0 2px 3px,
+		inset #222 0 -2px 3px,*/
+		inset #222 0 0 4px 3px,
+		#fff 0 0 6px 2px;
+}
+
+#color-controls {
+	border: 1px solid #1d1d1d;
+	border-radius: 5px;
+	/*min-height: 230px;*/
+	background-color: #2a2a2a;
+}
+
+#color-controls legend {
+	margin: auto;
+}

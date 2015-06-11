@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+	<head>
+		<title>HueCentral</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<!-- Scripts -->
+		<script src="js/modernizr.custom.79450.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+		<script src="js/main.js"></script>
+	</head>
+	<body>
+		
+<!--------- HueCentral: A mobile web app to control Philips Hue lights -------->
+		
+<!----------------------------------- Pages ----------------------------------->
+		
+		<!-- Home -->
+		<div id="home" data-role="page" data-nav="Home" data-title="HueCentral" data-theme="b">
+			<div data-role="main" class="ui-content">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#lights">Lights</a></li>
+					<li><a href="#groups">Groups</a></li>
+					<li><a href="#schedules">Alarms</a></li>
+					<li><a href="#sensors">Sensors</a></li>
+					<li><a href="#rules">Rules</a></li>
+					<li><a href="#settings">Settings</a></li>
+					<li><a href="#help">Help</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- List of Lights -->
+		<div id="lights" data-role="page" data-nav="Lights" data-title="Lights" data-theme="b">
+			<div data-role="main" class="ui-content" id="lights-content">
+			</div>
+		</div>
+		
+		<!-- List of Groups -->
+		<div id="groups" data-role="page" data-nav="Groups" data-title="Groups" data-theme="b">
+			<div data-role="main" class="ui-content" id="groups-content">
+			</div>
+		</div>
+		
+		<!-- Alarms -->
+		<div id="schedules" data-role="page" data-nav="Alarms" data-title="Alarms" data-theme="b">
+			<div data-role="main" class="ui-content" id="schedules-content">
+			</div>
+		</div>
+		
+		<!-- Sensors -->
+		<div id="sensors" data-role="page" data-nav="Sensors" data-title="Sensors" data-theme="b">
+			<div data-role="main" class="ui-content" id="sensors-content">
+			</div>
+		</div>
+		
+		<!-- Rules -->
+		<div id="rules" data-role="page" data-nav="Rules" data-title="Rules" data-theme="b">
+			<div data-role="main" class="ui-content" id="rules-content">
+			</div>
+		</div>
+		
+		<!-- Settings -->
+		<div id="settings" data-role="page" data-nav="Settings" data-title="Settings" data-theme="b">
+			<div data-role="main" class="ui-content">
+				<p>Settings placeholder.</p>
+			</div>
+		</div>
+		
+		<!-- Control Individual Light/Group -->
+		<div id="control" data-role="page" data-nav="Control" data-title="Control" data-theme="b">
+			<div data-role="main" class="ui-content" id="control-content">
+				<ul data-role="listview" data-inset="true">
+					<li class="ui-field-contain">
+						<label for="power">Power</label>
+						<input type="checkbox" name="power" id="power" data-role="flipswitch">
+					</li>
+					<li class="ui-field-contain full-width-slider">
+						<label for="bri-slider">Brightness</label>
+						<input id="bri-slider" name="bri-slider" type="range" min="0" max="255" data-highlight="true">
+					</li>
+					<li class="ui-field-contain">
+						<label>Preview</label>
+						<div id="light-bg"></div>
+					</li>
+				</ul>
+				<fieldset id="color-controls" class="ui-shadow">
+					<legend>
+						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="color-controls-tabs">
+							<input type="radio" id="hue-label" name="color" class="color" checked>
+							<label for="hue-label">Color</label>
+							<input type="radio" id="ct-label" name="color" class="color">
+							<label for="ct-label">White</label>
+						</fieldset>
+					</legend>
+					<div id="hue-sat">
+						<div class="ui-field-contain full-width-slider">
+							<input id="hue-slider" type="range" min="0" max="360" data-track-theme="z">
+							<input id="sat-slider" type="range" min="0" max="255" data-track-theme="y">
+						</div>
+					</div>
+					<div id="ct" class="ui-field-contain full-width-slider" style="display: none">
+						<input id="ct-slider" type="range" min="153" max="500" data-track-theme="x">
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		
+		<!-- Initial Setup -->
+		<div id="initial-setup" data-title="Initial Setup" data-nav="Initial Setup" data-role="page" data-theme="b">
+			<div data-role="main" class="ui-content">
+				<h3 class="center">HueCentral Initial Setup</h3>
+				<div id="initial-setup-api-name" style="display: none">
+					<p>
+						Enter a name for this device. HueCentral needs this name 
+						when registering with the bridge.
+					</p>
+					<input type="text" size="29" id="api-name">
+					<button id="api-name-button">Submit</button>
+				</div>
+				<div id="initial-setup-ip-address" style="display: none">
+					<p>Press the button below to find your bridge address.</p>
+					<button id="ip-address-button">Find Bridge!</button>
+				</div>
+				<div id="initial-setup-ip-address-result" style="display: none">
+					<p>Searching for bridge...</p>
+				</div>
+				<div id="initial-setup-bridge-link" style="display: none">
+					<p>
+						Press the button on the bridge. HueCentral will then 
+						register itself and then setup will be complete.
+					</p>
+					<button id="initial-setup-complete" style="display: none">Continue</button>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Help -->
+		<div id="help" data-role="page" data-nav="Help" data-title="Help" data-theme="b">
+			<div data-role="main" class="ui-content">
+				<p>Help placeholder.</p>
+			</div>
+		</div>
+
+<!----------------------- External Toolbars and Panels ----------------------->
+		
+		<!-- Navigation Menu -->
+		<div data-role="panel" data-position-fixed="true" id="menu" data-theme="b">
+			<div data-role="header">
+				<h2>Menu</h2>
+				<a href="#" data-rel="close" class="ui-btn-right" data-iconpos="notext" data-icon="delete">Close menu</a>
+			</div>
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#lights" data-prefetch="true">Lights</a></li>
+				<li><a href="#groups" data-prefetch="true">Groups</a></li>
+				<li><a href="#schedules" data-prefetch="true">Alarms</a></li>
+				<li><a href="#sensors" data-prefetch="true">Sensors</a></li>
+				<li><a href="#rules" data-prefetch="true">Rules</a></li>
+				<li><a href="#settings" data-prefetch="true">Settings</a></li>
+				<li><a href="#help" data-prefetch="true">Help</a></li>
+			</ul>
+		</div>
+		
+		
+		<!-- Header -->
+		<div data-role="header" data-position="fixed" data-theme="b">
+			<h1>HueCentral</h1>
+			<a href="#menu" data-iconpos="notext" data-icon="bars">Menu</a>
+		</div>	
+		
+		<!-- Navigation Bar -->
+		<div data-role="footer" data-position="fixed" data-theme="b" id="navbar">
+			<div data-role="navbar" class="ui-state-persist">
+				<ul>
+					<li><a href="#home" data-icon="home" class="ui-btn-active" data-transition="none">Home</a></li>
+					<li><a href="#lights" data-icon="bullets" data-transition="none">Lights</a></li>
+					<li><a href="#groups" data-icon="grid" data-transition="none">Groups</a></li>
+					<li><a href="#schedules" data-icon="clock" data-transition="none">Alarms</a></li>
+				</ul>
+			</div>
+		</div>
+		
+	</body>
+</html>
